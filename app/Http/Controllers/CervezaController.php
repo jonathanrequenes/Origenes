@@ -15,6 +15,8 @@ class CervezaController extends Controller
     public function index()
     {
         //
+        $cervezas = Cerveza::all();
+        return view('cervezas.index', compact('cervezas'));
     }
 
     /**

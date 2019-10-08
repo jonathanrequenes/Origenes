@@ -15,6 +15,12 @@ class CreateCervezasTable extends Migration
     {
         Schema::create('cervezas', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name', 100);
+            $table->text('description');
+            $table->float('price', 10, 2);
+            $table->float('price_on_six', 10, 2);
+            $table->float('alcohol_grade', 5, 2);
+            $table->integer('inventory');
             $table->timestamps();
         });
     }
