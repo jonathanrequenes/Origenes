@@ -8,7 +8,7 @@
                 <div class="card-header">Dashboard</div>
 
                 <div class="card-body">
-                  <a class="nav-link" href="{{ route('cervezas') }}">Cervezas</a>
+                  <a class="nav-link" href="{{ route('cerveza.index') }}">Cervezas</a>
                 </div>
             </div>
         </div>

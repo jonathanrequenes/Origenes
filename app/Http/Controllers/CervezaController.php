@@ -27,7 +27,7 @@ class CervezaController extends Controller
     public function create()
     {
         //
-        return view('cervezas.create');
+        return view('cervezas.form');
     }
 
     /**
@@ -42,7 +42,7 @@ class CervezaController extends Controller
         $cerveza = new Cerveza();
         $cerveza->fill($request->all());
         $cerveza->save();
-      return redirect('/cervezas')->with('success', 'Cerveza agregada correctamente');
+        return redirect()->route('cerveza.index');
     }
 
     /**
@@ -54,6 +54,7 @@ class CervezaController extends Controller
     public function show(Cerveza $cerveza)
     {
         //
+        return view('cervezas.show', compact('cerveza'));
     }
 
     /**
@@ -77,6 +78,10 @@ class CervezaController extends Controller
     public function update(Request $request, Cerveza $cerveza)
     {
         //
+        $cerveza->fill($request->all());
+        $cerveza->save();
+
+        return redirect()->route('cerveza.index');
     }
 
     /**
@@ -88,5 +93,7 @@ class CervezaController extends Controller
     public function destroy(Cerveza $cerveza)
     {
         //
+        $cerveza->delete();
+        return redirect()->route('cerveza.index');
     }
 }
