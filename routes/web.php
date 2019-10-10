@@ -20,4 +20,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/cervezas', 'CervezaController@index')->name('cervezas');
+Route::get('/cerveza_form', 'CervezaController@create')->name('cervezaCreate');
 Route::resource('cerveza', 'CervezaController');

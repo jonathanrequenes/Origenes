@@ -27,6 +27,7 @@ class CervezaController extends Controller
     public function create()
     {
         //
+        return view('cervezas.create');
     }
 
     /**
@@ -38,6 +39,10 @@ class CervezaController extends Controller
     public function store(Request $request)
     {
         //
+        $cerveza = new Cerveza();
+        $cerveza->fill($request->all());
+        $cerveza->save();
+      return redirect('/cervezas')->with('success', 'Cerveza agregada correctamente');
     }
 
     /**

@@ -6,6 +6,7 @@
     <div class="col-md-10">
       <div class="card">
         <div class="card-body">
+          <input type ='button' class="btn btn-success"  value='Agregar cerveza' onclick="location.href = '{{ route('cervezaCreate') }}'"/><br><br>
           <table class="table">
             <thead>
               <tr>
@@ -16,9 +17,13 @@
             </thead>
             <tbody>
               <tr>
-                <td></td>
-                <td></td>
-                <td></td>
+                @foreach($cervezas as $cerveza)
+                <tr>
+                  <td>{{ $cerveza->name }}</td>
+                  <td>{{ $cerveza->price }}</td>
+                  <td>{{ $cerveza->alcohol_grade }}</td>
+                </tr>
+                @endforeach
               </tr>
             </tbody>
           </table>
