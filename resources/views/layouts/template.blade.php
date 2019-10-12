@@ -8,10 +8,10 @@
   <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
 
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Fira+Sans|Roboto:300,400|Questrial|Satisfy">
-  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="css/animate.css">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="{{asset('css/font-awesome.min.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{asset('css/animate.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
 
   <!-- =======================================================
     Theme Name: Laura
@@ -105,12 +105,11 @@
         <!--end row-->
       </div>
     </footer>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.easing.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.bxslider.min.js"></script>
-    <script src="js/wow.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="contactform/contactform.js"></script>
+    <script src="{{asset('js/jquery.min.js')}}"></script>
+    <script src="{{asset('js/jquery.easing.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('js/jquery.bxslider.min.js')}}"></script>
+    <script src="{{asset('js/wow.js')}}"></script>
+    <script src="{{asset('js/custom.js')}}"></script>
 </body>
 </html>
