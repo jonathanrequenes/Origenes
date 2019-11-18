@@ -2,7 +2,7 @@
 
 @section('content')
 <section id="about" class="section-padding wow fadeIn delay-05s">
-  <div class="container">
+  <div class="section-padding container">
     <div class="row">
       <div class="col-md-6 text-right">
         <h2 class="title-text">

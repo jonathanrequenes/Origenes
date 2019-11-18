@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Laura Bootstrap Theme</title>
+  <title>Cerveza Origenes</title>
   <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
   <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
 
@@ -39,9 +39,8 @@
                     <li class="active"><a href="#main-header">Inicio</a></li>
                     <li><a href="#about">Nosotros</a></li>
                     <li><a href="#portfolio">Cervezas</a></li>
-                    <li><a href="#testimonial">Testimonios</a></li>
-                    <li><a href="#contact">Contacto</a></li>
                     <li><a href="{{ route('login') }}">Login</a></li>
+                    <li><a href="{{ route('register') }}">Registro</a></li>
                   </ul>
                 </div>
               </div>
@@ -69,11 +68,11 @@
           <div class="row">
             <div class="col-md-6 text-right">
               <h2 class="title-text">
-                Meet<br><span class="deco">Laura</span> Thomson
+                Conoce<br><span class="deco">Cerveza Origenes</span>
               </h2>
             </div>
             <div class="col-md-6 text-left">
-              <div class="about-text">
+              <div class="about-text"><p></p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                 <p>&nbsp;</p>
                 <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -92,104 +91,31 @@
         <div class="container">
           <div class="row">
             <div class="col-md-12">
-              <h2 class="title text-center">Let's <span class="deco">See</span> My Work</h2>
+              <h2 class="title text-center"><span class="deco">Nuestro trabajo</span></h2>
             </div>
             <div class="col-md-12">
               <div id="myGrid" class="grid-padding">
                 <div class="col-md-4 col-sm-4 padding-right-zero">
-                  <img src="img/portfolio01.jpg" class="img-responsive">
-                  <img src="img/port01.jpg" class="img-responsive">
-                  <img src="img/port02.jpg" class="img-responsive">
-                  <img src="img/portfolio01.jpg" class="img-responsive">
+                  <img src="img/maceracion.jpeg" class="img-responsive">
+                  <img src="img/semillas1.jpeg" class="img-responsive">
+                  <img src="img/semillas2.jpeg" class="img-responsive">
+                  <img src="img/cerveza1.jpeg" class="img-responsive">
                 </div>
                 <div class="col-md-4 col-sm-4 padding-right-zero">
-                  <img src="img/portfolio02.jpg" class="img-responsive">
-                  <img src="img/port01.jpg" class="img-responsive">
-                  <img src="img/port02.jpg" class="img-responsive">
-                  <img src="img/portfolio01.jpg" class="img-responsive">
-                  <img src="img/port03.jpg" class="img-responsive">
+                  <img src="img/semillas3.jpeg" class="img-responsive">
+                  <img src="img/semillas4.jpeg" class="img-responsive">
+                  <img src="img/semillas5.jpeg" class="img-responsive">
+                  <img src="img/cerveza2.jpeg" class="img-responsive">
                 </div>
                 <div class="col-md-4 col-sm-4 padding-right-zero">
-                  <img src="img/port01.jpg" class="img-responsive">
-                  <img src="img/portfolio01.jpg" class="img-responsive">
+                  <img src="img/lupulo.jpeg" class="img-responsive">
+                  <img src="img/cerveza3.jpeg" class="img-responsive">
                   <img src="img/portfolio02.jpg" class="img-responsive">
                   <img src="img/port03.jpg" class="img-responsive">
                   <img src="img/portfolio02.jpg" class="img-responsive">
-                  <img src="img/port02.jpg" class="img-responsive">
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-      <section id="testimonial" class="section-padding wow fadeInUp">
-        <div class="container">
-          <div class="row">
-            <h2 class="title text-center">See What Our <span class="deco">Client</span> Are Saying ?</h2>
-            <div class="test-sec">
-              <div class="col-sm-4">
-                <blockquote>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diamsed commodo nibh ante facilisis bibendum dolor feugiat at. </p>
-                </blockquote>
-                <div class="carousel-info">
-                  <div class="pull-left"> <span class="testimonials-name">John Doe</span> <span class="testimonials-post">CEO,  Company Inc.</span> </div>
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <blockquote>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diamsed commodo nibh ante facilisis bibendum dolor feugiat at. </p>
-                </blockquote>
-                <div class="carousel-info">
-                  <div class="pull-left"> <span class="testimonials-name">John Doe</span> <span class="testimonials-post">CEO,  Company Inc.</span> </div>
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <blockquote>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diamsed commodo nibh ante facilisis bibendum dolor feugiat at. </p>
-                </blockquote>
-                <div class="carousel-info">
-                  <div class="pull-left"> <span class="testimonials-name">John Doe</span> <span class="testimonials-post">CEO,  Company Inc.</span> </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section id="contact" class="section-padding wow fadeIn delay-05s">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="contact-sec text-center">
-                <h2>Want To <span class="deco">Hire</span> Me?</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
-              </div>
-            </div>
-
-            <div class="col-md-8 col-md-push-2">
-              <div id="sendmessage">Your message has been sent. Thank you!</div>
-              <div id="errormessage"></div>
-              <form action="" method="post" role="form" class="contactForm">
-                <div class="form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                  <div class="validation"></div>
-                </div>
-                <div class="form-group">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-                  <div class="validation"></div>
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-                  <div class="validation"></div>
-                </div>
-                <div class="form-group">
-                  <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-                  <div class="validation"></div>
-                </div>
-
-                <div class="text-center"><button type="submit" class="btn btn-primary btn-lg">Send Message</button></div>
-              </form>
-            </div>
-
           </div>
         </div>
       </section>
@@ -199,7 +125,7 @@
           <div class="row">
             <div class="col-md-6">
               <div class="footer">
-                © Copyright Laura Theme. All Rights Reserved
+                © Copyright Cerveza Origenes. Todos los derechos reservados
                 <div class="credits">
                   <!--
                     All the links in the footer should remain intact.

@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Laura Bootstrap Theme</title>
   <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
   <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
@@ -38,8 +39,30 @@
                 <div class="collapse navbar-collapse" id="lauraMenu">
                   <ul class="nav navbar-nav navbar-right navbar-border">
                     <li class="active"><a href="#main-header">Inicio</a></li>
-                    <li><a href="{{ route('cerveza.index') }}">Cervezas</a></li>
+                    @guest
                     <li><a href="{{ route('login') }}">Login</a></li>
+                    @else
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                    @endguest
+                    <li><a href="{{ route('register') }}">Registro</a></li>
+                    <li><a href="{{ route('register') }}">Adminstrador</a></li>
+                    <li><a href="{{ route('register') }}">Productos</a></li>
                   </ul>
                 </div>
               </div>
@@ -52,9 +75,6 @@
                   <div class="banner-text">
                     <h2>Somos <span>Cerveza Origenes</span></h2>
                     <p>Cerveza Artesanal <br>100% Mexicana</p>
-                  </div>
-                  <div class="overlay-detail text-center">
-                    <a href="#about"><i class="fa fa-angle-down"></i></a>
                   </div>
                 </div>
               </div>
@@ -72,7 +92,7 @@
         <div class="row">
           <div class="col-md-6">
             <div class="footer">
-              © Copyright Laura Theme. All Rights Reserved
+              © Copyright Cerveza Origenes. Todos los derechos reservados
               <div class="credits">
                 <!--
                   All the links in the footer should remain intact.

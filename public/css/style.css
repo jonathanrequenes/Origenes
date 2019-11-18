@@ -145,7 +145,7 @@ Responsive media queries
 }
 
 #about {
-  background: url('../img/about-banner.jpg') no-repeat;
+  background: url('../img/about-banner1.jpg') no-repeat;
   background-size: cover;
   margin-bottom: -3px;
 }
@@ -166,13 +166,14 @@ Responsive media queries
 }
 
 .about-text p {
-  color: #444;
+  color: #FFFFFF;
 }
 
 .abt-list li {
   padding: 5px 0px;
   font-size: 18px;
   font-weight: 400;
+  color: #ffffff;
 }
 
 #portfolio {
