@@ -38,7 +38,7 @@
                   <ul class="nav navbar-nav navbar-right navbar-border">
                     <li class="active"><a href="#main-header">Inicio</a></li>
                     <li><a href="#about">Nosotros</a></li>
-                    <li><a href="#portfolio">Cervezas</a></li>
+                    <li><a href="#portfolio">Productos</a></li>
                     <li><a href="{{ route('login') }}">Login</a></li>
                     <li><a href="{{ route('register') }}">Registro</a></li>
                   </ul>

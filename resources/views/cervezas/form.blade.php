@@ -1,13 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
-<div class="container">
+<div class="container section-padding">
   <div class="row justify-content-center">
     <div class="col-md-10">
       <div class="card uper">
-        <div class="card-header">
-          Agregar cerveza
-        </div>
+        <h2 class="title text-center"><span class="deco">Agregar categoria</span></h2>
         <div class="card-body">
             <form method="post" action="{{ route('cerveza.store') }}">
                 <div class="form-group">
