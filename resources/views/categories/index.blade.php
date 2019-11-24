@@ -1,6 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
+@if(session()->has('msj'))
+  <div class="alert alert-success" role="alert">{{session('msj')}}</div>
+@endif
 <div class="container section-padding">
   <div class="row justify-content-center">
     <div class="col-md-10">

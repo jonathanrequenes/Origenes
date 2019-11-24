@@ -6,6 +6,7 @@
     <div class="col-md-10">
       <div class="card uper">
         <h2 class="title text-center"><span class="deco">Editar categoria</span></h2>
+        @include('categories.error')
         <div class="card-body">
           <form action="{{ route('categoria.update', $categorium->id) }}" method="POST">
             <input type="hidden" name="_method" value="PATCH">

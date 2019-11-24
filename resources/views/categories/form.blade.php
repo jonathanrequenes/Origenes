@@ -6,6 +6,7 @@
     <div class="col-md-8">
       <div class="card uper">
         <h2 class="title text-center"><span class="deco">Agregar categoria</span></h2>
+        @include('categories.error')
         <div class="card-body">
             <form method="post" action="{{ route('categoria.store') }}">
                 <div class="form-group">
