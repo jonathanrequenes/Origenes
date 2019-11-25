@@ -15,10 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
-Route::get('/admin', 'HomeController@indexAdmin')->name('admin')->middleware('auth');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::get('/admin', 'HomeController@indexAdmin')->name('admin')->middleware('verified');
 
 Route::resource('cerveza', 'CervezaController');
 Route::resource('categoria', 'CategoryController');
