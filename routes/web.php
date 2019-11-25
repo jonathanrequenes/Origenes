@@ -22,3 +22,4 @@ Route::get('/admin', 'HomeController@indexAdmin')->name('admin')->middleware('au
 
 Route::resource('cerveza', 'CervezaController');
 Route::resource('categoria', 'CategoryController');
+Route::resource('producto', 'ProductController');

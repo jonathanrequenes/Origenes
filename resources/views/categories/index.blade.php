@@ -18,7 +18,6 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
                 @foreach($categories as $category)
                 <tr>
                   <td>{{ $category->name }}</td>
@@ -31,7 +30,6 @@
                   </td>
                 </tr>
                 @endforeach
-              </tr>
             </tbody>
           </table>
         </div>

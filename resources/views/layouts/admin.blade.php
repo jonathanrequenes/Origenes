@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Laura Bootstrap Theme</title>
+  <title>Cerveza Origenes</title>
   <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
   <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
 
@@ -39,7 +39,7 @@
                 <div class="collapse navbar-collapse" id="lauraMenu">
                   <ul class="nav navbar-nav navbar-right navbar-border">
                     <li class="active"><a href="{{ route('categoria.index') }}">Categorias</a></li>
-                    <li class="active"><a href="">Cervezas</a></li>
+                    <li class="active"><a href="{{ route('producto.index') }}">Productos</a></li>
                     @guest
                     @else
                     <li><a>Bienvenido: {{ Auth::user()->name }}</a></li>
@@ -117,7 +117,6 @@
     <script src="{{asset('js/jquery.min.js')}}"></script>
     <script src="{{asset('js/jquery.easing.min.js')}}"></script>
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('js/jquery.bxslider.min.js')}}"></script>
     <script src="{{asset('js/wow.js')}}"></script>
     <script src="{{asset('js/custom.js')}}"></script>
 </body>
