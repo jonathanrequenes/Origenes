@@ -31,14 +31,6 @@
                     <textarea name="description" rows="3" cols="50" value="{{ old('description') }}"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="price">Precio</label>
-                    <input type="text" class="form-control" name="price" value="{{ old('price') }}"/>
-                </div>
-                <div class="form-group">
-                    <label for="price_on_six">Precio (Six)</label>
-                    <input type="text" class="form-control" name="price_on_six" value="{{ old('price_on_six') }}"/>
-                </div>
-                <div class="form-group">
                     <label for="alcohol_grade">Grado de Alcohol</label>
                     <input type="text" class="form-control" name="alcohol_grade" value="{{ old('alcohol_grade') }}"/>
                 </div>
@@ -46,6 +38,14 @@
                     <label for="inventory">Inventario</label>
                     <input type="text" class="form-control" name="inventory" value="{{ old('inventory') }}"/>
                 </div>
+                <!--<div class="form-group">
+                    <label for="price">Precio</label>
+                    <input type="text" class="form-control" name="price" value="{{ old('price') }}"/>
+                </div>
+                <div class="form-group">
+                    <label for="price_on_six">Precio (Six)</label>
+                    <input type="text" class="form-control" name="price_on_six" value="{{ old('price_on_six') }}"/>
+                </div>-->
                 <div class="form-group">
                     <label for="image">Imagen</label>
                     <input type="file" name="image"/>

@@ -15,8 +15,10 @@
               <tr>
                 <th>Nombre</th>
                 <th>Categoria</th>
-                <th>Precio</th>
+                <th>Grados de alcohol</th>
                 <th>Inventario</th>
+                <!--<th>Precio</th>
+                <th>Inventario</th>-->
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -25,8 +27,10 @@
               <tr>
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->category }}</td>
-                <td>$ {{ $product->price }}</td>
-                <td>$ {{ $product->price_on_six }}</td>
+                <td>{{ $product->alcohol_grade }}</td>
+                <td>{{ $product->inventory }}</td>
+                <!--<td>$ {{ $product->price }}</td>
+                <td>$ {{ $product->inventory }}</td>-->
                 <td><a href="{{ route('producto.show', $product->id) }}" class="btn btn-sm btn-info"> Ver/Editar</a>
                   <form method="POST" action="{{ route('producto.destroy', $product->id) }}">
                     @method("DELETE")

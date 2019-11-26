@@ -18,10 +18,10 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('category_id')->unsigned();
             $table->string('name', 100);
             $table->text('description');
-            $table->float('price', 10, 2);
-            $table->float('price_on_six', 10, 2);
             $table->float('alcohol_grade', 5, 2);
             $table->integer('inventory');
+            /*$table->float('price', 10, 2);
+            $table->float('price_on_six', 10, 2);*/
             $table->string('image_path', 200);
             $table->timestamps();
 

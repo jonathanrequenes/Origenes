@@ -40,6 +40,7 @@
                   <ul class="nav navbar-nav navbar-right navbar-border">
                     <li class="active"><a href="{{ route('categoria.index') }}">Categorias</a></li>
                     <li class="active"><a href="{{ route('producto.index') }}">Productos</a></li>
+                    <li class="active"><a href="{{ route('presentacion.index') }}">Presentaciones</a></li>
                     @guest
                     @else
                     <li><a>Bienvenido: {{ Auth::user()->name }}</a></li>

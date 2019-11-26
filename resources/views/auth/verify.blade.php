@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.template')
 
 @section('content')
-<div class="container">
+<div class="container section-padding">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Verifica tu correo electronico') }}</div>
+                <h2 class="title text-center"><span class="deco">Verifica tu correo electronico.</span></h2>
 
                 <div class="card-body">
                     @if (session('resent'))
@@ -18,7 +18,7 @@
                     {{ __('Si no recibiste el correo electronico') }},
                     <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                         @csrf
-		                <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('Haz click aqui para enviarla nuevamente') }}</button>.
+		                <div align="center"><button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('Haz click aqui para enviarla nuevamente') }}</button>.</div>
 	                </form>
                 </div>
             </div>

@@ -36,14 +36,6 @@
                   <textarea name="description" rows="3" cols="50">{{ $producto->description }}</textarea>
               </div>
               <div class="form-group">
-                  <label for="price">Precio</label>
-                  <input type="text" class="form-control" name="price" value="{{ $producto->price }}"/>
-              </div>
-              <div class="form-group">
-                  <label for="price_on_six">Precio (Six)</label>
-                  <input type="text" class="form-control" name="price_on_six" value="{{ $producto->price_on_six }}"/>
-              </div>
-              <div class="form-group">
                   <label for="alcohol_grade">Grado de Alcohol</label>
                   <input type="text" class="form-control" name="alcohol_grade" value="{{ $producto->alcohol_grade }}"/>
               </div>
@@ -51,12 +43,20 @@
                   <label for="inventory">Inventario</label>
                   <input type="text" class="form-control" name="inventory" value="{{ $producto->inventory }}"/>
               </div>
+              <!--<div class="form-group">
+                  <label for="price">Precio</label>
+                  <input type="text" class="form-control" name="price" value="{{ $producto->price }}"/>
+              </div>
+              <div class="form-group">
+                  <label for="price_on_six">Precio (Six)</label>
+                  <input type="text" class="form-control" name="price_on_six" value="{{ $producto->price_on_six }}"/>
+              </div>-->
               <img src="{{ asset('img/'.$producto->image_path) }}" class="img-thumbnail" style="width:20%;">
               <div class="form-group">
                   <label for="image">Imagen Actual</label>
                   <input type="file" name="image"/>
               </div>
-              <button type="submit" class="btn btn-primary">Agregar</button>
+              <button type="submit" class="btn btn-primary">Guardar cambios</button>
             </form>
         </div>
       </div>

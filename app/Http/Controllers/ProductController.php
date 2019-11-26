@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -22,8 +26,8 @@ class ProductController extends Controller
           $p = Product::findOrFail($product->id);
           $category=$p->category;
           $product->category = $category->name;
-          $product->price = number_format($product->price, 2, ".", ",");
-          $product->price_on_six = number_format($product->price_on_six, 2, ".", ",");
+          /*$product->price = number_format($product->price, 2, ".", ",");
+          $product->price_on_six = number_format($product->price_on_six, 2, ".", ",");*/
         }
         return view('products.index', compact('products'));
     }
@@ -48,7 +52,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->validate(['name' => 'required|string|unique:products|min:3','category' => 'required','description' => 'required|string|min:3','price' => 'required|numeric','price_on_six' => 'required|numeric','alcohol_grade' => 'required|numeric','inventory' => 'required|numeric','image' => 'required|file'])){
+        if($request->validate(['name' => 'required|string|unique:products|min:3','category' => 'required','description' => 'required|string|min:3', 'alcohol_grade' => 'required|numeric', 'inventory' => 'required|numeric',/*'price' => 'required|numeric','price_on_six' => 'required|numeric'*/ 'image' => 'required|file'])){
             if($request->hasFile('image')){
               $file = $request->file('image');
               $name = time().$file->getClientOriginalName();
@@ -58,10 +62,10 @@ class ProductController extends Controller
             $product->category_id = $request->category;
             $product->name = $request->name;
             $product->description = $request->description;
-            $product->price = $request->price;
-            $product->price_on_six = $request->price_on_six;
             $product->alcohol_grade = $request->alcohol_grade;
             $product->inventory = $request->inventory;
+            /*$product->price = $request->price;
+            $product->price_on_six = $request->price_on_six;*/
             $product->image_path = $name;
             $product->save();
             return redirect()->route('producto.index')->with('msj', 'Datos correctamente guardados');
@@ -101,7 +105,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $producto)
     {
-        if($request->validate(['name' => 'required|string|min:3','category' => 'required','description' => 'required|string|min:3','price' => 'required|numeric','price_on_six' => 'required|numeric','alcohol_grade' => 'required|numeric','inventory' => 'required|numeric','image' => 'file'])){
+        if($request->validate(['name' => 'required|string|min:3','category' => 'required','description' => 'required|string|min:3', 'alcohol_grade' => 'required|numeric', 'inventory' => 'required|numeric',/*'price' => 'required|numeric','price_on_six' => 'required|numeric'*/ 'image' => 'file'])){
           if($request->hasFile('image')){
             unlink(public_path().'/img/'.$producto->image_path);
             $file = $request->file('image');
@@ -111,10 +115,10 @@ class ProductController extends Controller
           $producto->category_id = $request->category;
           $producto->name = $request->name;
           $producto->description = $request->description;
-          $producto->price = $request->price;
-          $producto->price_on_six = $request->price_on_six;
           $producto->alcohol_grade = $request->alcohol_grade;
           $producto->inventory = $request->inventory;
+          /*$producto->price = $request->price;
+          $producto->price_on_six = $request->price_on_six;*/
           if($request->hasFile('image')){
             $producto->image_path = $name;
           }
