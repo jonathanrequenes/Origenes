@@ -57,9 +57,9 @@ class PresentationController extends Controller
      * @param  \App\Presentation  $presentation
      * @return \Illuminate\Http\Response
      */
-    public function show(Presentation $presentation)
+    public function show(Presentation $presentacion)
     {
-        //
+        return view('presentations.show', compact('presentacion'));
     }
 
     /**
@@ -80,9 +80,14 @@ class PresentationController extends Controller
      * @param  \App\Presentation  $presentation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Presentation $presentation)
+    public function update(Request $request, Presentation $presentacion)
     {
-        //
+        if($request->validate(['name' => 'required|string|min:3', 'description' => 'required|string|min:3', 'price' => 'required|numeric', 'amount' => 'required|numeric'])){
+          $presentacion->fill($request->all());
+          $presentacion->save();
+
+          return redirect()->route('presentacion.index')->with('msj', 'Datos correctamente actualizados');
+        }
     }
 
     /**
@@ -91,8 +96,9 @@ class PresentationController extends Controller
      * @param  \App\Presentation  $presentation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Presentation $presentation)
+    public function destroy(Presentation $presentacion)
     {
-        //
+        $presentacion->delete();
+        return redirect()->route('presentacion.index')->with('msj', 'Registro correctamente eliminado');
     }
 }
