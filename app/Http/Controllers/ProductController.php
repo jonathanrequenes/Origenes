@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\Category;
+use App\Presentation;
+use App\Product_Presentation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -20,14 +22,17 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $numP = 0;
         $products = Product::all();
         foreach ($products as $key => $product) {
           $p = Product::findOrFail($product->id);
           $category=$p->category;
+          $presentations=$p->presentations;
           $product->category = $category->name;
-          /*$product->price = number_format($product->price, 2, ".", ",");
-          $product->price_on_six = number_format($product->price_on_six, 2, ".", ",");*/
+          foreach ($presentations as $key => $presentations) {
+            $numP++;
+          }
+          $product->numPresentations = $numP;
         }
         return view('products.index', compact('products'));
     }
@@ -39,9 +44,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
         $categories = Category::all();
-        return view('products.form', compact('categories'));
+        $presentations = Presentation::all();
+        return view('products.form', compact('categories', 'presentations'));
     }
 
     /**
@@ -52,22 +57,28 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->validate(['name' => 'required|string|unique:products|min:3','category' => 'required','description' => 'required|string|min:3', 'alcohol_grade' => 'required|numeric', 'inventory' => 'required|numeric',/*'price' => 'required|numeric','price_on_six' => 'required|numeric'*/ 'image' => 'required|file'])){
+        if($request->validate(['name' => 'required|string|unique:products|min:3','category' => 'required','description' => 'required|string|min:3', 'alcohol_grade' => 'required|numeric', 'inventory' => 'required|numeric','presentations' => 'required', 'image' => 'required|file'])){
             if($request->hasFile('image')){
               $file = $request->file('image');
               $name = time().$file->getClientOriginalName();
               $file->move(public_path().'/img/', $name);
             }
+            $presentations = $request->presentations;
             $product = new Product();
             $product->category_id = $request->category;
             $product->name = $request->name;
             $product->description = $request->description;
             $product->alcohol_grade = $request->alcohol_grade;
             $product->inventory = $request->inventory;
-            /*$product->price = $request->price;
-            $product->price_on_six = $request->price_on_six;*/
             $product->image_path = $name;
             $product->save();
+            $id = $product->id;
+            foreach ($presentations as $key => $presentation) {
+              $p_presentation = new Product_Presentation();
+              $p_presentation->product_id = $id;
+              $p_presentation->presentation_id = $presentation;
+              $p_presentation->save();
+            }
             return redirect()->route('producto.index')->with('msj', 'Datos correctamente guardados');
         }
     }
@@ -82,7 +93,14 @@ class ProductController extends Controller
     {
         //
         $categories = Category::all();
-        return view('products.show', compact('producto', 'categories'));
+        $p_presentations = $producto->presentations;
+        $p_presentationsArray = array();
+
+        foreach ($p_presentations as $key => $p) {
+          array_push($p_presentationsArray, $p->id);
+        }
+        $presentations = Presentation::whereNotIn('id', $p_presentationsArray)->get();
+        return view('products.show', compact('producto', 'categories', 'presentations', 'p_presentations'));
     }
 
     /**
@@ -105,24 +123,30 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $producto)
     {
-        if($request->validate(['name' => 'required|string|min:3','category' => 'required','description' => 'required|string|min:3', 'alcohol_grade' => 'required|numeric', 'inventory' => 'required|numeric',/*'price' => 'required|numeric','price_on_six' => 'required|numeric'*/ 'image' => 'file'])){
+        if($request->validate(['name' => 'required|string|min:3','category' => 'required','description' => 'required|string|min:3', 'alcohol_grade' => 'required|numeric', 'inventory' => 'required|numeric', 'presentations' => 'required', 'image' => 'file'])){
           if($request->hasFile('image')){
             unlink(public_path().'/img/'.$producto->image_path);
             $file = $request->file('image');
             $name = time().$file->getClientOriginalName();
             $file->move(public_path().'/img/', $name);
           }
+          $presentations = $request->presentations;
           $producto->category_id = $request->category;
           $producto->name = $request->name;
           $producto->description = $request->description;
           $producto->alcohol_grade = $request->alcohol_grade;
           $producto->inventory = $request->inventory;
-          /*$producto->price = $request->price;
-          $producto->price_on_six = $request->price_on_six;*/
           if($request->hasFile('image')){
             $producto->image_path = $name;
           }
           $producto->save();
+          Product_Presentation::where('product_id', $producto->id)->delete();
+          foreach ($presentations as $key => $presentation) {
+            $p_presentation = new Product_Presentation();
+            $p_presentation->product_id = $producto->id;
+            $p_presentation->presentation_id = $presentation;
+            $p_presentation->save();
+          }
           return redirect()->route('producto.index')->with('msj', 'Datos correctamente actualizados');
         }
     }
@@ -136,6 +160,7 @@ class ProductController extends Controller
     public function destroy(Product $producto)
     {
         unlink(public_path().'/img/'.$producto->image_path);
+        Product_Presentation::where('product_id', $producto->id)->delete();
         $producto->delete();
         return redirect()->route('producto.index')->with('msj', 'Registro correctamente eliminado');
     }

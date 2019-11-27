@@ -17,10 +17,24 @@
                 <div class="form-group">
                     <label for="name">Categoria:</label>
                     <div class="row">
-                      <div class="col-md-12">
-                        <select name="category">
+                      <div class="col-md-3">
+                        <select  name="category"
+                          class="form-control">
                           @foreach($categories as $category)
                           <option value="{{$category->id}}">{{$category->name}}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name">Presentaciones:</label>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <select  name="presentations[]"
+                          class="form-control" multiple>
+                          @foreach($presentations as $presentation)
+                          <option value="{{$presentation->id}}">{{$presentation->name}}</option>
                           @endforeach
                         </select>
                       </div>
@@ -38,14 +52,6 @@
                     <label for="inventory">Inventario</label>
                     <input type="text" class="form-control" name="inventory" value="{{ old('inventory') }}"/>
                 </div>
-                <!--<div class="form-group">
-                    <label for="price">Precio</label>
-                    <input type="text" class="form-control" name="price" value="{{ old('price') }}"/>
-                </div>
-                <div class="form-group">
-                    <label for="price_on_six">Precio (Six)</label>
-                    <input type="text" class="form-control" name="price_on_six" value="{{ old('price_on_six') }}"/>
-                </div>-->
                 <div class="form-group">
                     <label for="image">Imagen</label>
                     <input type="file" name="image"/>
