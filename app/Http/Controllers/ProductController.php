@@ -151,6 +151,36 @@ class ProductController extends Controller
         }
     }
 
+    public function document(Product $producto)
+    {
+        $id=$producto->id;
+        return view('products.addDocument', compact('id'));
+    }
+
+    public function indexDocumentation($producto_id)
+    {
+        $producto = Product::find($producto_id);
+        $documentations = $producto->documentations;
+        return view('products.indexDocument', compact('documentations'));
+    }
+
+    public function storeDocumentation(Request $request, $product_id)
+    {
+      if($request->validate(['documentations' => 'required'])){
+        if($request->hasFile('documentations')){
+          $files=$request->file('documentations');
+          $product = Product::find($product_id);
+          foreach($files as $file){
+            $name = time().$file->getClientOriginalName();
+            $file->move(public_path().'/documentations/', $name);
+
+            $product->documentations()->create(['path' => $name]);
+          }
+        }
+        return redirect()->route('producto.index')->with('msj', 'Documentación agregada correctamente.');
+      }
+    }
+
     /**
      * Remove the specified resource from storage.
      *

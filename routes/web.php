@@ -23,4 +23,9 @@ Route::get('/admin', 'HomeController@indexAdmin')->name('admin')->middleware('ve
 Route::resource('cerveza', 'CervezaController')->middleware('verified');
 Route::resource('categoria', 'CategoryController')->middleware('verified');
 Route::resource('producto', 'ProductController')->middleware('verified');
+//Rutas de Documentacion
+Route::get('/producto/document/{producto}', 'ProductController@document')->name('documentProduct');
+Route::post('/producto/document/{producto_id}', 'ProductController@storeDocumentation')->name('documentSave');
+Route::get('/producto/documents/{producto_id}', 'ProductController@indexDocumentation')->name('documentIndex');
+
 Route::resource('presentacion', 'PresentationController')->middleware('verified');

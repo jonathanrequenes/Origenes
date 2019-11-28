@@ -16,4 +16,8 @@ class Product extends Model
     public function presentations(){
       return $this->belongsToMany(Presentation::class, 'product__presentations', 'product_id', 'presentation_id');
     }
+
+    public function documentations(){
+      return $this->morphMany(Documentation::class, 'documentable', 'documentable_type', 'documentable_id');
+    }
 }

@@ -19,6 +19,7 @@
                 <th>Inventario</th>
                 <th>Num. Presentaciones</th>
                 <th>Acciones</th>
+                <th>Documentacion</th>
               </tr>
             </thead>
             <tbody>
@@ -36,6 +37,8 @@
                     <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
                   </form>
                 </td>
+                <td><a href="{{ route('documentProduct', $product->id) }}" class="btn btn-sm btn-info"> Documentación</a>
+                <a href="{{ route('documentIndex', $product->id) }}" class="btn btn-sm btn-info"> Ver documentacion.</a></td>
               </tr>
               @endforeach
             </tbody>
