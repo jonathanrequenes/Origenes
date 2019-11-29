@@ -46,8 +46,11 @@ class CategoryController extends Controller
       if($request->validate(['name' => 'required|string|unique:categories|min:3',])){
         $category = new Category();
         $category->fill($request->all());
-        $category->save();
-        return redirect()->route('categoria.index')->with('msj', 'Datos correctamente guardados');
+        if($category->save()){
+          return redirect()->route('categoria.index')->with('msj', 'Datos correctamente guardados');
+        }else{
+          return redirect()->route('categoria.index')->with('msje', 'Error al guardar los datos.');
+        }
       }
     }
 
@@ -86,9 +89,11 @@ class CategoryController extends Controller
         //
         if($request->validate(['name' => 'required|string|min:3',])){
           $categorium->fill($request->all());
-          $categorium->save();
-
-          return redirect()->route('categoria.index')->with('msj', 'Datos correctamente actualizados');
+          if($categorium->save()){
+            return redirect()->route('categoria.index')->with('msj', 'Datos correctamente actualizados');
+          }else {
+            return redirect()->route('categoria.index')->with('msje', 'Error al actualizar los datos.');
+          }
         }
 
     }
@@ -102,7 +107,10 @@ class CategoryController extends Controller
     public function destroy(Category $categorium)
     {
         //
-        $categorium->delete();
-        return redirect()->route('categoria.index')->with('msj', 'Registro correctamente eliminado');
+        if($categorium->delete()){
+          return redirect()->route('categoria.index')->with('msj', 'Registro correctamente eliminado');
+        }else{
+          return redirect()->route('categoria.index')->with('msje', 'Error al eliminar los datos.');
+        }
     }
 }

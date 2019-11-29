@@ -6,6 +6,7 @@ use App\Product;
 use App\Category;
 use App\Presentation;
 use App\Product_Presentation;
+use App\Documentation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -57,7 +58,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->validate(['name' => 'required|string|unique:products|min:3','category' => 'required','description' => 'required|string|min:3', 'alcohol_grade' => 'required|numeric', 'inventory' => 'required|numeric','presentations' => 'required', 'image' => 'required|file'])){
+      if($request->validate(['name' => 'required|string|unique:products|min:3','category' => 'required','description' => 'required|string|min:3', 'alcohol_grade' => 'required|numeric', 'inventory' => 'required|numeric','presentations' => 'required', 'image' => 'required|file'])){
             if($request->hasFile('image')){
               $file = $request->file('image');
               $name = time().$file->getClientOriginalName();
@@ -71,13 +72,17 @@ class ProductController extends Controller
             $product->alcohol_grade = $request->alcohol_grade;
             $product->inventory = $request->inventory;
             $product->image_path = $name;
-            $product->save();
+            if(!($product->save())){
+              return redirect()->route('producto.index')->with('msje', 'Error al guardar los datos.');
+            }
             $id = $product->id;
             foreach ($presentations as $key => $presentation) {
               $p_presentation = new Product_Presentation();
               $p_presentation->product_id = $id;
               $p_presentation->presentation_id = $presentation;
-              $p_presentation->save();
+              if(!($p_presentation->save())){
+                return redirect()->route('producto.index')->with('msje', 'Error al guardar los datos.');
+              }
             }
             return redirect()->route('producto.index')->with('msj', 'Datos correctamente guardados');
         }
@@ -139,13 +144,17 @@ class ProductController extends Controller
           if($request->hasFile('image')){
             $producto->image_path = $name;
           }
-          $producto->save();
+          if(!($producto->save())){
+            return redirect()->route('producto.index')->with('msje', 'Error al actualizar los datos.');
+          }
           Product_Presentation::where('product_id', $producto->id)->delete();
           foreach ($presentations as $key => $presentation) {
             $p_presentation = new Product_Presentation();
             $p_presentation->product_id = $producto->id;
             $p_presentation->presentation_id = $presentation;
-            $p_presentation->save();
+            if(!($p_presentation->save())){
+              return redirect()->route('producto.index')->with('msje', 'Error al actualizar los datos.');
+            }
           }
           return redirect()->route('producto.index')->with('msj', 'Datos correctamente actualizados');
         }
@@ -174,7 +183,9 @@ class ProductController extends Controller
             $name = time().$file->getClientOriginalName();
             $file->move(public_path().'/documentations/', $name);
 
-            $product->documentations()->create(['path' => $name]);
+            if(!($product->documentations()->create(['path' => $name]))){
+              return redirect()->route('producto.index')->with('msje', 'Error en agregado de documentacion.');
+            }
           }
         }
         return redirect()->route('producto.index')->with('msj', 'Documentación agregada correctamente.');
@@ -189,9 +200,22 @@ class ProductController extends Controller
      */
     public function destroy(Product $producto)
     {
-        unlink(public_path().'/img/'.$producto->image_path);
-        Product_Presentation::where('product_id', $producto->id)->delete();
-        $producto->delete();
-        return redirect()->route('producto.index')->with('msj', 'Registro correctamente eliminado');
+       unlink(public_path().'/img/'.$producto->image_path);
+       Product_Presentation::where('product_id', $producto->id)->delete();
+       if($producto->delete()){
+         return redirect()->route('producto.index')->with('msj', 'Registro correctamente eliminado');
+       }else{
+         return redirect()->route('producto.index')->with('msje', 'Error en eliminacion de registro.');
+       }
+     }
+
+    public function deleteDocumentation(Documentation $document)
+    {
+        unlink(public_path().'/documentations/'.$document->path);
+        if($document->delete()){
+          return redirect()->route('producto.index')->with('msj', 'Documentación correctamente eliminada');
+        }else{
+          return redirect()->route('producto.index')->with('msje', 'Error en eliminacion de documentacion.');
+        }
     }
 }

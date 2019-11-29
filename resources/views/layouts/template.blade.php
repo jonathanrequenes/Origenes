@@ -40,6 +40,7 @@
                   <ul class="nav navbar-nav navbar-right navbar-border">
                     <li class="active"><a href="#main-header">Inicio</a></li>
                     <li><a href="#about">Nosotros</a></li>
+                    <li><a href="#portfolio">Nuestro trabajo</a></li>
                     <li><a href="#portfolio">Productos</a></li>
                     @guest
                     <li><a href="{{ route('login') }}">Login</a></li>
@@ -85,7 +86,7 @@
           <div class="row">
             <div class="col-md-6 text-right">
               <h2 class="title-text">
-                Meet<br><span class="deco">Laura</span> Thomson
+                Conoce<br><span class="deco">Cerveza Origenes</span>
               </h2>
             </div>
             <div class="col-md-6 text-left">
@@ -127,9 +128,8 @@
                 <div class="col-md-4 col-sm-4 padding-right-zero">
                   <img src="img/lupulo.jpeg" class="img-responsive">
                   <img src="img/cerveza3.jpeg" class="img-responsive">
-                  <img src="img/portfolio02.jpg" class="img-responsive">
+                  <img src="img/cev_02.jpeg" class="img-responsive">
                   <img src="img/port03.jpg" class="img-responsive">
-                  <img src="img/portfolio02.jpg" class="img-responsive">
                 </div>
               </div>
             </div>

@@ -46,8 +46,11 @@ class PresentationController extends Controller
         if($request->validate(['name' => 'required|string|unique:presentations|min:3', 'description' => 'required|string|min:3', 'price' => 'required|numeric', 'amount' => 'required|numeric'])){
           $presentation = new Presentation();
           $presentation->fill($request->all());
-          $presentation->save();
-          return redirect()->route('presentacion.index')->with('msj', 'Datos correctamente guardados');
+          if($presentation->save()){
+            return redirect()->route('presentacion.index')->with('msj', 'Datos correctamente guardados');
+          }else{
+            return redirect()->route('presentacion.index')->with('msje', 'Eroror al guardar los datos.');
+          }
         }
     }
 
@@ -84,9 +87,43 @@ class PresentationController extends Controller
     {
         if($request->validate(['name' => 'required|string|min:3', 'description' => 'required|string|min:3', 'price' => 'required|numeric', 'amount' => 'required|numeric'])){
           $presentacion->fill($request->all());
-          $presentacion->save();
+          if($presentacion->save()){
+            return redirect()->route('presentacion.index')->with('msj', 'Datos correctamente actualizados');
+          }else{
+            return redirect()->route('presentacion.index')->with('msje', 'Eroror al guardar los datos.');
+          }
+        }
+    }
 
-          return redirect()->route('presentacion.index')->with('msj', 'Datos correctamente actualizados');
+    public function document(Presentation $presentacion)
+    {
+        $id=$presentacion->id;
+        return view('presentations.addDocument', compact('id'));
+    }
+
+    public function indexDocumentation($presentacion_id)
+    {
+        $presentacion = Presentation::find($presentacion_id);
+        $documentations = $presentacion->documentations;
+        return view('presentations.indexDocument', compact('documentations'));
+    }
+
+    public function storeDocumentation(Request $request, $presentation_id)
+    {
+        if($request->validate(['documentations' => 'required'])){
+          if($request->hasFile('documentations')){
+            $files=$request->file('documentations');
+            $presentation = Presentation::find($presentation_id);
+            foreach($files as $file){
+              $name = time().$file->getClientOriginalName();
+              $file->move(public_path().'/documentations/', $name);
+
+              if(!($presentation->documentations()->create(['path' => $name]))){
+                return redirect()->route('producto.index')->with('msje', 'Error en agregado de documentacion.');
+              }
+            }
+          }
+          return redirect()->route('presentacion.index')->with('msj', 'Documentación agregada correctamente.');
         }
     }
 
@@ -100,5 +137,15 @@ class PresentationController extends Controller
     {
         $presentacion->delete();
         return redirect()->route('presentacion.index')->with('msj', 'Registro correctamente eliminado');
+    }
+
+    public function deleteDocumentation(Documentation $document)
+    {
+        unlink(public_path().'/documentations/'.$document->path);
+        if($document->delete()){
+          return redirect()->route('presentacion.index')->with('msj', 'Documentación correctamente eliminada');
+        }else{
+          return redirect()->route('presentacion.index')->with('msje', 'Error en eliminacion de documentacion.');
+        }
     }
 }
